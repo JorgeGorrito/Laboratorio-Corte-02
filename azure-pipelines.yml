@@ -10,30 +10,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Install .NET Core SDK'
-  inputs:
-    version: 8.x
-    performMultiLevelLookup: true
-    includePreviewVersions: true 
-    
 - task: DotNetCoreCLI@2
-  displayName: Build
   inputs:
-    command: build
+    command: 'build'
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)' # Update this to match your needs
-
+    workingDirectory: '/Laboratorio\ 02'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
-    workingDirectory: '$(System.DefaultWorkingDirectory)/WebAppTest'
-
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(1)(a8b530e8-0cae-4192-a61e-129cfff10c11)'
-    appType: 'webAppLinux'
+    azureSubscription: 'Azure subscription 1(2)(a8b530e8-0cae-4192-a61e-129cfff10c11)'
+    appType: 'webApp'
     WebAppName: 'ullanos-devops-2024'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
