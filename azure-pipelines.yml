@@ -21,7 +21,7 @@ steps:
   inputs:
     command: 'build'
     publishWebProjects: true
-    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio\ 02'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio 02'
 - task: AzureRmWebAppDeployment@4
   displayName: 'Publicacion'
   inputs:
