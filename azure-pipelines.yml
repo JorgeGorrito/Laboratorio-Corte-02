@@ -10,16 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: |
-    sudo apt-get update
-    sudo apt-get install -y dotnet-sdk-3.1
-  displayName: 'Install .NET Core SDK'
+- task: UseDotNet@2
+  inputs:
+    version: '8.x'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: 'Laboratorio\ Corte\ 2/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)/WebAppTest'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
