@@ -11,15 +11,19 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'Compilacion'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    workingDirectory: '/Laboratorio\ 02'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio\ 02'
 - task: DotNetCoreCLI@2
+  displayName: 'Publicacion'
   inputs:
-    command: 'publish'
+    command: 'build'
     publishWebProjects: true
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio\ 02'
 - task: AzureRmWebAppDeployment@4
+  displayName: 'Publicacion'
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(2)(a8b530e8-0cae-4192-a61e-129cfff10c11)'
