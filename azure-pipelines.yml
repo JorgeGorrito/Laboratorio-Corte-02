@@ -11,14 +11,18 @@ pool:
 
 steps:
 - task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
   inputs:
-    version: '8.x'
-
+    version: 8.x
+    performMultiLevelLookup: true
+    includePreviewVersions: true 
+    
 - task: DotNetCoreCLI@2
+  displayName: Build
   inputs:
-    command: 'build'
-    projects: 'Laboratorio\ Corte\ 2/*.csproj'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/WebAppTest'
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)' # Update this to match your needs
 
 - task: DotNetCoreCLI@2
   inputs:
