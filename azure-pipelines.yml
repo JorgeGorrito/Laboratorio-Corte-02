@@ -15,7 +15,7 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio\ 02'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Laboratorio 02'
 - task: DotNetCoreCLI@2
   displayName: 'Publicacion'
   inputs:
